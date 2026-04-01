@@ -33,4 +33,4 @@ const hotelSchema = new mongoose.Schema<HotelType>({
  lastUpdated: { type: Date, required: true },
 });
 
-const Hotel = mongoose.model<HotelType>("Hotel", hotelSchema);
+export const Hotel = mongoose.model<HotelType>("Hotel", hotelSchema);

@@ -11,6 +11,7 @@ type ToastMessage = {
 type AppContext = {
  showToast: (toastMessage: ToastMessage) => void;
  isLoggedIn: boolean;
+ isLoading: boolean;
 };
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
@@ -22,7 +23,7 @@ export const AppContextProvider = ({
 }) => {
  const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
 
- const { data } = useQuery({
+ const { data, isLoading } = useQuery({
   queryKey: ["validateToken"],
   queryFn: apiClient.validateToken,
   retry: false,
@@ -35,6 +36,7 @@ export const AppContextProvider = ({
      setToast(toastMessage);
     },
     isLoggedIn: !!data && !!data.userId,
+    isLoading,
    }}
   >
    {toast && (
