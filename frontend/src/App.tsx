@@ -7,7 +7,7 @@ import {
 import Register from "./pages/register";
 import SignIn from "./pages/signIn";
 import Layout from "./layouts/layout";
-import AddHotel from "./pages/hotel";
+import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
