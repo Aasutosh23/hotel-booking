@@ -19,7 +19,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("should allow user to add a hotel", async ({ page }) => {
- await page.goto(`${UI_URL}/add-hotel`);
+ await page.goto(`${UI_URL}add-hotel`);
 
  await page.locator('[name="name"]').fill("Test Hotel");
  await page.locator('[name="city"]').fill("Test City");
@@ -41,4 +41,7 @@ test("should allow user to add a hotel", async ({ page }) => {
   path.join(__dirname, "files", "1.jpg"),
   path.join(__dirname, "files", "2.jpg"),
  ]);
+
+ await page.getByRole("button", { name: "Save" }).click();
+ await expect(page.getByText("Hotel Saved!")).toBeVisible({ timeout: 15000 });
 });
