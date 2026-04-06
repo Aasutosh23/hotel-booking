@@ -1,6 +1,6 @@
 import type { RegisterFormData } from "./pages/register";
 import type { SignInFormData } from "./pages/signIn";
-import type { HotelType } from "../../backend/src/models/hotel";
+import type { HotelType } from "../../backend/src/shared/types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
