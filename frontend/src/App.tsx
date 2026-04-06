@@ -9,6 +9,7 @@ import SignIn from "./pages/signIn";
 import Layout from "./layouts/layout";
 import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
+import MyHotels from "./pages/MyHotels";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
  const { isLoggedIn, isLoading } = useAppContext();
@@ -63,6 +64,17 @@ const App = () => {
       <ProtectedRoute>
        <Layout>
         <AddHotel />
+       </Layout>
+      </ProtectedRoute>
+     }
+    />
+
+    <Route
+     path="/my-hotels"
+     element={
+      <ProtectedRoute>
+       <Layout>
+        <MyHotels />
        </Layout>
       </ProtectedRoute>
      }
