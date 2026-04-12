@@ -3,11 +3,7 @@ import type { HotelFormData } from "./ManageHotelForm";
 import { useEffect, useMemo } from "react";
 
 const ImagesSection = () => {
- const {
-  setValue,
-  control,
-  formState: { errors },
- } = useFormContext<HotelFormData>();
+ const { setValue, control } = useFormContext<HotelFormData>();
 
  // ✅ Existing images (from backend)
  const imageUrls =
