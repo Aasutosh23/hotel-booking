@@ -19,6 +19,7 @@ const GuestsSection = () => {
       min={1}
       {...register("adultCount", {
        required: "This field is required",
+       valueAsNumber: true,
       })}
      />
      {errors.adultCount?.message && (
@@ -35,6 +36,7 @@ const GuestsSection = () => {
       min={0}
       {...register("childCount", {
        required: "This field is required",
+       valueAsNumber: true,
       })}
      />
      {errors.childCount?.message && (
