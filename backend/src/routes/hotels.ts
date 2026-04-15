@@ -12,6 +12,19 @@ router.get("/search", async (req: Request, res: Response) => {
 
   const query: Record<string, unknown> = {};
 
+  let sortOptions = {};
+  switch (req.query.sortOption) {
+   case "starRating":
+    sortOptions = { starRating: -1 };
+    break;
+   case "pricePerNightAsc":
+    sortOptions = { pricePerNight: 1 };
+    break;
+   case "pricePerNightDesc":
+    sortOptions = { pricePerNight: -1 };
+    break;
+  }
+
   if (req.query.destination) {
    const destination = req.query.destination.toString();
    query["$or"] = [
@@ -28,7 +41,44 @@ router.get("/search", async (req: Request, res: Response) => {
    query["childCount"] = { $gte: parseInt(req.query.childCount.toString()) };
   }
 
-  const hotels = await Hotel.find(query).skip(skip).limit(pageSize);
+  if (req.query.facilities) {
+   const facilities = Array.isArray(req.query.facilities)
+    ? req.query.facilities
+    : [req.query.facilities];
+
+   query["facilities"] = {
+    $all: facilities,
+   };
+  }
+
+  if (req.query.types) {
+   const types = Array.isArray(req.query.types)
+    ? req.query.types
+    : [req.query.types];
+
+   query["type"] = { $in: types };
+  }
+
+  if (req.query.stars) {
+   const stars = Array.isArray(req.query.stars)
+    ? (req.query.stars as string[])
+    : [req.query.stars as string];
+
+   const starRatings = stars.map((star) => parseInt(star));
+
+   query["starRating"] = { $in: starRatings };
+  }
+
+  if (req.query.maxPrice) {
+   query["pricePerNight"] = {
+    $lte: parseInt(req.query.maxPrice as string),
+   };
+  }
+
+  const hotels = await Hotel.find(query)
+   .sort(sortOptions)
+   .skip(skip)
+   .limit(pageSize);
 
   const total = await Hotel.countDocuments(query);
 
