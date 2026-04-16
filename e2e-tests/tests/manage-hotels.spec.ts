@@ -37,7 +37,6 @@ test("should allow user to add a hotel", async ({ page }) => {
  await page.locator('[name="adultCount"]').fill("2");
  await page.locator('[name="childCount"]').fill("4");
 
- // ✅ Use absolute paths so files resolve regardless of CWD
  await page.setInputFiles('[name="imageFiles"]', [
   path.join(__dirname, "files", "1.jpg"),
   path.join(__dirname, "files", "2.jpg"),
