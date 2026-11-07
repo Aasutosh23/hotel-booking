@@ -1,10 +1,6 @@
 # 🏨 Hotel Booking & Reservation System
 
 <p align="center">
-  <img src="frontend/src/assets/hero.png" alt="Hotel Booking Hero" width="850" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);" />
-</p>
-
-<p align="center">
   A production-ready, full-stack hotel booking and property management web application built with <strong>TypeScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>Express</strong>, <strong>MongoDB</strong>, <strong>Tailwind CSS</strong>, <strong>Cloudinary</strong>, <strong>Stripe</strong>, and <strong>Playwright</strong>.
 </p>
 
